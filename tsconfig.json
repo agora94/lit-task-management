@@ -15,7 +15,11 @@
     "inlineSources": true,
     "rootDir": "./",
     "incremental": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "useDefineForClassFields": false,
+    "paths": {
+      "tslib" : ["./node_modules/tslib/tslib.d.ts"]
+    }
   },
   "include": ["**/*.ts"]
 }
