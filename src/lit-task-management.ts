@@ -1,11 +1,15 @@
 import { LitElement, html, css } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
-
-const logo = new URL('../../assets/open-wc-logo.svg', import.meta.url).href;
+import { Task } from './models/Task.js';
+import './components/task-item.js';
 
 @customElement('lit-task-management')
 export class LitTaskManagement extends LitElement {
-  @property({ type: String }) header = 'My app';
+  @property({ type: Object }) task: Task = {
+    id: 1,
+    title: 'Task 1',
+    completed: false,
+  };
 
   static styles = css`
     :host {
@@ -26,20 +30,6 @@ export class LitTaskManagement extends LitElement {
       flex-grow: 1;
     }
 
-    .logo {
-      margin-top: 36px;
-      animation: app-logo-spin infinite 20s linear;
-    }
-
-    @keyframes app-logo-spin {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
     .app-footer {
       font-size: calc(12px + 0.5vmin);
       align-items: center;
@@ -53,18 +43,7 @@ export class LitTaskManagement extends LitElement {
   render() {
     return html`
       <main>
-        <div class="logo"><img alt="open-wc logo" src=${logo} /></div>
-        <h1>${this.header}</h1>
-
-        <p>Edit <code>src/LitTaskManagement.ts</code> and save to reload.</p>
-        <a
-          class="app-link"
-          href="https://open-wc.org/guides/developing-components/code-examples"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Code examples
-        </a>
+        <task-item .task=${this.task}></task-item>
       </main>
 
       <p class="app-footer">
